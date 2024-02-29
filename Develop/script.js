@@ -7,6 +7,46 @@ const questions = [
             { text: "Alerts", correct: true},
             { text: "Numbers", correct: false},
         ]
+    },
+
+    {
+        question: "The condition in an if/else statement is enclosed with _____",
+        answers: [
+            { text: "Quotes", correct: false},
+            { text: "Curly Brackets", correct: false},
+            { text: "Parenthesis", correct: true},
+            { text: "Square Brackets", correct: false},
+        ]
+    },
+
+    {
+        question: "Arrays in JavaScript can be used to store ____",
+        answers: [
+            { text: "Numbers and Strings", correct: false},
+            { text: "Other Arrays", correct: false},
+            { text: "Booleans", correct: false},
+            { text: "All of the Above", correct: true},
+        ]
+    },
+
+    {
+        question: "String values must be enclosed within ___ when being assigned to variables.",
+        answers: [
+            { text: "Commas", correct: false},
+            { text: "Curly Brackets", correct: false},
+            { text: "Quotess", correct: true},
+            { text: "Parenthesis", correct: false},
+        ]
+    },
+ 
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: [
+            { text: "JavaScript", correct: false},
+            { text: "Terminal/Bash", correct: false},
+            { text: "For loops", correct: false},
+            { text: "Console.log", correct: true},
+        ]
     }
 ];
 
@@ -111,34 +151,34 @@ function showScore(){
 
     // Display the final score
     const finalScoreElement = document.createElement("div");
-    finalScoreElement.textContent = `All done! You scored ${score} out of ${questions.length}.`;
+    finalScoreElement.textContent = `You scored ${score} out of ${questions.length}.`;
     finalScoreElement.classList.add("final-score");
-    scoreContainer.insertBefore(finalScoreElement, document.querySelector(".name-container"));
+    scoreContainer.appendChild(finalScoreElement);
 
-    // Show the name container
+    // Show the name container and submit button
     const nameContainer = document.querySelector(".name-container");
     nameContainer.style.display = "flex";
-
-    // Show the input box
-    // Show the input box
-    const nameInput = document.createElement("input");
-    nameInput.setAttribute("type", "text");
-    nameInput.setAttribute("placeholder", "Enter your name");
-    nameInput.classList.add("name-input");
-    nameContainer.appendChild(nameInput);
-
-
-    // Show the submit button
     const submitButton = document.getElementById("submit-btn");
     submitButton.style.display = "block";
 
-    // Add event listener to the submit button
-    submitButton.addEventListener("click", function() {
-        const playerName = nameInput.value;
-        console.log(`Score submitted for ${playerName}: ${score}`);
-        // Code to handle submitting the score, e.g., saving it to localStorage or displaying it in a modal
+    // Change the "Coding Quiz Challenge" text
+    document.querySelector("h1").textContent = "All done!";
+    
+    // Add event listener to the final score text
+    finalScoreElement.addEventListener("click", function() {
+        // Code to handle displaying the high scores or any other action
     });
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

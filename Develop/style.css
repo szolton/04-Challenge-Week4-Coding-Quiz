@@ -110,12 +110,13 @@ body {
 
 .final-score {
     font-family: 'FranklinGothic Demi', Arial, sans-serif;
-    font-size: 18px;
+    font-size: 24px; /* Change the font size to make it bigger */
     color: #481287;
     font-weight: bold;
-    margin-bottom: 20px;
-    text-align: left;
+    margin-bottom: 10px; /* Reduce the margin to bring it closer to the score */
+    text-align: left; 
 }
+
 
 #submit-btn {
     background-color: #481287;
@@ -129,10 +130,11 @@ body {
 } */
 
 .name-container {
-    /* display: none; */
+    display: flex;
     align-items: center;
-    justify-content: center; /* Center items horizontally */
-    margin-top: 20px; /* Adjust top margin as needed */
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center; /* Center text horizontally */
 }
 
 .name-container label {
@@ -155,5 +157,3 @@ body {
 .name-container button:hover {
     background-color: #B194D3;
 }
-
-
