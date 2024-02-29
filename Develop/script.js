@@ -1,40 +1,41 @@
 const questions = [
     {
-        question: "Which is the largest animal in the world?",
+        question: "Commonly used data types DO Not Include:",
         answers: [
-            { text: "Shark", correct: false},
-            { text: "Blue whale", correct: true},
-            { text: "Elephant", correct: false},
-            { text: "Giraffe", correct: false},
+            { text: "Strings", correct: false},
+            { text: "Booleans", correct: false},
+            { text: "Alerts", correct: true},
+            { text: "Numbers", correct: false},
         ]
     }, 
 
     {     
-        question: "Which is the smallest country in the world?",
+        question: "The condition in an if / else statement is enclosed with _______",
         answers: [
-            { text: "Vatican City", correct: true},
-            { text: "Bhutan", correct: true},
-            { text: "Nepal", correct: false},
-            { text: "Shri Lanka", correct: false},
+            { text: "Quotes", correct: true},
+            { text: "Curly Brackets", correct: false},
+            { text: "Parenthesis", correct: true},
+            { text: "Square Brackets", correct: false},
         ]
     },
     {     
-        question: "Which is the smallest continent in the world?",
+        question: "Arrays in JavaScript can be used to store",
         answers: [
-            { text: "Asia", correct: false},
-            { text: "Australia", correct: true},
-            { text: "Arctic", correct: false},
-            { text: "Africa", correct: false},
+            { text: "Numbers and Strings", correct: false},
+            { text: "Other Arrays", correct: false},
+            { text: "Booleans", correct: false},
+            { text: "All of the Above", correct: true},
         ]
     },
 
-    {     
-        question: "Which is the largest desert in the world?",
+
+    {
+        question: "A very useful tool used during development and debugging for your printing content to the debugger is:",
         answers: [
-            { text: "Kalahari", correct: false},
-            { text: "Gobi", correct: false},
-            { text: "Sahara", correct: false},
-            { text: "Antarctica", correct: true},
+            { text: "JavaScript", correct: false},
+            { text: "Terminal/Bash", correct: false},
+            { text: "For Loops", correct: false},
+            { text: "Console.log", correct: true},
         ]
     }
 
@@ -135,11 +136,32 @@ function showFeedback(text){
 }
 
 function showScore(){
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    // Hide the quiz elements
+    document.querySelector(".quiz").style.display = "none";
+
+    // Display the final score
+    const finalScoreElement = document.createElement("div");
+    finalScoreElement.textContent = `All done! You scored ${score} out of ${questions.length}.`;
+    finalScoreElement.classList.add("final-score");
+    document.querySelector(".app").appendChild(finalScoreElement);
+
+    // Show the submit button
+    const submitButton = document.getElementById("submit-btn");
+    submitButton.style.display = "block";
+
+    // Add event listener to the submit button
+    submitButton.addEventListener("click", function() {
+        // Code to handle submitting the score, e.g., saving it to localStorage or displaying it in a modal
+        console.log("Score submitted!");
+    });
+
+    console.log("Submit button should be visible");
 }
+
 
 function endQuiz(){
     questionElement.innerHTML = `Time's up! You scored ${score} out of ${questions.length}.`;
+    showScore();
 }
 
 startQuiz();

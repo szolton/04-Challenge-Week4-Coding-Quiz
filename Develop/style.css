@@ -96,10 +96,22 @@ body {
 }
 
 #feedback {
-    display: none; /* Hide the feedback element initially */
+    /* display: none; Hide the feedback element initially */
     font-family: 'FranklinGothic URL Demi', Arial, sans-serif;
     font-size: 24px;
     font-style: italic;
     color: #481287;
+}
+
+.final-score {
+    font-family: 'FranklinGothic Demi', Arial, sans-serif;
+    font-size: 18px;
+    color: #481287;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+#high-score-btn {
+    background-color: #481287;
 }
 
