@@ -103,15 +103,57 @@ body {
     color: #481287;
 }
 
+.score-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
 .final-score {
     font-family: 'FranklinGothic Demi', Arial, sans-serif;
     font-size: 18px;
     color: #481287;
     font-weight: bold;
-    padding-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
-#high-score-btn {
+#submit-btn {
     background-color: #481287;
+    display: block;
+    margin: 0 auto;
 }
+/* 
+.name-container {
+    display: flex;
+    align-items: center;
+} */
+
+.name-container {
+    /* display: none; */
+    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    margin-top: 20px; /* Adjust top margin as needed */
+}
+
+.name-container label {
+    margin-right: 10px;
+}
+
+.name-container input {
+    margin-right: 10px;
+}
+
+.name-container button {
+    background-color: #481287;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.name-container button:hover {
+    background-color: #B194D3;
+}
+
 
