@@ -3,12 +3,20 @@
 <head>
     <title>Coding Quiz Challenge</title>
     <link rel="stylesheet" href="./Develop/style.css">
+    <div id="timer">3:00</div>
 </head>
 <body>
     <div class="app">
         <h1>Coding Quiz Challenge</h1>
+        <div class="intro-start">
+            <h3>Try to answer the following code-related questions within the time limit.
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds!</h3>
+                <div id="start-btn">
+                <!-- <button id="start-btn" class="start-btn-btn">Start Quiz</button> -->
+                <button class="btn">Start Quiz</button>
+            </div>
+        </div>
         <div class="quiz">
-            <div id="timer">3:00</div>
             <h2 id="question">Question goes here</h2>
             <div id="answer-buttons">
                 <button class="btn">Answer 1</button>
@@ -23,12 +31,17 @@
             <div id="final-score" class="final-score" style="display: none;"></div>
         </div>
         <div class="name-container" style="display: none;">
-            <label for="name-input">Enter your initials:</label>
+            <label for="name-input">Enter initials:</label>
             <input type="text" id="name-input">
-            <button id="submit-btn" style="display: none;">Submit</button>
+            <button id="submit-btn" onclick="submitInitials()" style="display: none;">Submit</button>
         </div>
+        <div class="high-scores" id="results">
+            <ul class="high-scores-list" style="display: none"></ul>
+        </div>
+        
+        <button id="go-back-btn" class="btn hide">Go Back</button>
+        <button id="clear-high-scores-btn" class="btn hide">Clear High Scores</button>
     </div>
-    
     <script src="./Develop/script.js"></script>
 </body>
 </html>

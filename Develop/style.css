@@ -9,6 +9,13 @@ body {
     background: whitesmoke;
 }
 
+ul, ol, li {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    display: block;
+}
+
 .app {
     background: whitesmoke;
     width: 90%;
@@ -29,6 +36,7 @@ body {
 }
 
 .quiz {
+    display: none;
     padding: 20px 0;
     position: relative;
 }
@@ -117,18 +125,6 @@ body {
     text-align: left; 
 }
 
-
-#submit-btn {
-    background-color: #481287;
-    display: block;
-    margin: 0 auto;
-}
-/* 
-.name-container {
-    display: flex;
-    align-items: center;
-} */
-
 .name-container {
     display: flex;
     align-items: center;
@@ -138,22 +134,126 @@ body {
 }
 
 .name-container label {
+    font-family: 'FranklinGothic URW Demi', Arial, sans-serif;
     margin-right: 10px;
+    color: #481287;
 }
 
 .name-container input {
     margin-right: 10px;
+    width: 400px;
+    height: 38px;
+    padding: 8px 50px;
+    font-size: 16px;
+    border: 1px solid #481287;
+    border-radius: 4px;
 }
 
-.name-container button {
+#submit-btn {
     background-color: #481287;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 30px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.3s;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
 }
 
-.name-container button:hover {
+#submit-btn:hover {
     background-color: #B194D3;
+}
+
+.high-scores {
+    background-color: #b194d3;
+    padding: 10px; /* Add padding inside the box */
+    margin-bottom: 5px; /* Add margin between boxes */
+    border-radius: 5px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for a raised effect */
+    text-align: left;
+}
+
+/* .app .high-scores-list {
+    display: none;
+} */
+
+/* the high scores list results */
+#results.high-scores {
+    display: none;
+    background-color: #b194d3;
+    padding: 10px; /* Add padding inside the box */
+    margin-bottom: 5px; /* Add margin between boxes */
+    border-radius: 5px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for a raised effect */
+    text-align: left;
+}
+
+/* Remove bullet points from ul */
+.high-scores-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: #481287;
+}
+
+.high-score-btn {
+    display: none;
+    text-align: center;
+    margin: 5px;
+    background-color: #481287;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#clear-high-scores-btn {
+    display: none;
+    background-color: #481287;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#clear-high-scores-btn:hover {
+    background-color: #B194D3;
+}
+
+
+#go-back-btn {
+    display: none;
+    background-color: #481287;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#go-back-btn:hover {
+    background-color: #B194D3;
+}
+
+.high-scores .high-score-btn:hover {
+    background-color: #B194D3;
+
+}
+
+/* .high-scores-list {
+    display: none;
+} */
+
+.intro-start h3 {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.hide {
+    display: none;
 }
