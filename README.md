@@ -8,10 +8,11 @@ I began by doing research and finding sources -- these youtube videos were equal
 
 Sources: https://www.youtube.com/watch?v=PBcqGxrr9g8, https://www.youtube.com/watch?v=f4fB9Xg2JEY 
 
-I followed the videos to create the Javascript, HTML, and CSS. Here is a screen recording of it:
+I followed the videos to create the Javascript, HTML, and CSS. Here is a screen recording video of it:
 
 [![Video Thumbnail](https://vimeo.com/919361758?share=copy)](https://vimeo.com/919361758?share=copy)
 
+![Screenshot](./Develop/Images/readme-SS.png)
 
 I set up the quiz to have a Start Quiz page, click on the Start button, go through the quiz where 
 
@@ -24,4 +25,4 @@ I set up the quiz to have a Start Quiz page, click on the Start button, go throu
 
 The hardest part was just navigating through the JavaScript and making sure everything was labelled correctly. It was a lot of troubleshooting and trying to figure out why something wasn't working, but I did eventually get everything down pact.
 
-Please follow this link to the full deployed video on GitHub: https://szolton.github.io/04-challenge-week4/
+Please follow this link to the successful, full deployed video on GitHub: https://szolton.github.io/04-challenge-week4/
