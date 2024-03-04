@@ -10,6 +10,7 @@ body {
 }
 
 ul, ol, li {
+    font-family: 'FranklinGothic Medium', Arial, sans-serif;
     list-style: none;
     padding: 10px;
     margin: 0;
@@ -245,15 +246,13 @@ ul, ol, li {
 
 }
 
-/* .high-scores-list {
-    display: none;
-} */
-
 .intro-start h3 {
-    text-align: center;
+    text-align: justify;
+    hyphens: auto;
     padding-top: 10px;
 }
 
-.hide {
-    display: none;
+#high-scores-link {
+    padding: 10px;
+
 }

@@ -9,7 +9,45 @@ const questions = [
             { text: "Numbers", correct: false},
         ]
     },
-    // Add more questions here...
+     {
+        question: "The condition in an if/else statement is enclosed with _____",
+        answers: [
+            { text: "Quotes", correct: false},
+            { text: "Curly Brackets", correct: false},
+            { text: "Parenthesis", correct: true},
+            { text: "Square Brackets", correct: false},
+        ]
+    },
+
+    {
+        question: "Arrays in JavaScript can be used to store ____",
+        answers: [
+            { text: "Numbers and Strings", correct: false},
+            { text: "Other Arrays", correct: false},
+            { text: "Booleans", correct: false},
+            { text: "All of the Above", correct: true},
+        ]
+    },
+
+    {
+        question: "String values must be enclosed within ___ when being assigned to variables.",
+        answers: [
+            { text: "Commas", correct: false},
+            { text: "Curly Brackets", correct: false},
+            { text: "Quotes", correct: true},
+            { text: "Parenthesis", correct: false},
+        ]
+    },
+ 
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: [
+            { text: "JavaScript", correct: false},
+            { text: "Terminal/Bash", correct: false},
+            { text: "For loops", correct: false},
+            { text: "Console.log", correct: true},
+        ]
+    }
 ];
 
 // HTML element references
@@ -19,6 +57,7 @@ const answerButtonsElement = document.getElementById("answer-buttons");
 const timerElement = document.getElementById("timer");
 const feedbackElement = document.getElementById("feedback");
 const scoreContainer = document.querySelector(".score-container");
+const highScoresLink = document.getElementById("high-scores-link");
 
 // Other variables
 let currentQuestionIndex = 0;
@@ -35,6 +74,17 @@ startBtn.addEventListener('click', () => {
     document.querySelector(".quiz").style.display = "block"; // Show the quiz section
 });
 
+// Add event listener to the high scores link
+highScoresLink.addEventListener("click", () => {
+    const highScoresContainer = document.querySelector("#results");
+    highScoresContainer.style.display = "block"; // Show the high scores list
+    document.querySelector(".intro-start").style.display = "none"; // Hide the intro-start section
+
+    // Show the Go Back button
+    document.getElementById("go-back-btn").style.display = "inline";
+});
+
+
 // Function to start the quiz
 function startQuiz(){
     currentQuestionIndex = 0;
@@ -42,8 +92,10 @@ function startQuiz(){
     showQuestion();
     startTimer();
 
-    console.log('Started');
+    // Show the high scores link
+    highScoresLink.style.display = "inline";
 }
+
 
 // Function to start the timer
 function startTimer(){
@@ -103,6 +155,12 @@ function selectAnswer(e){
         if (correctBtn) {
             correctBtn.classList.add("correct");
         }
+        // Reduce time if answer is incorrect
+        timeLeft -= 10; // Subtract 10 seconds
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        }
+        timerElement.textContent = `${Math.floor(timeLeft / 60)}:${(timeLeft % 60).toString().padStart(2, '0')}`;
     }
 
     // Disable all buttons after an answer is selected
@@ -156,9 +214,8 @@ function submitInitials() {
         }
 
         // Show the "Go Back" and "Clear High Scores" buttons
-         // Show the "Go Back" button
-    const goBackButton = document.getElementById("go-back-btn");
-    goBackButton.style.display = "block";
+        const goBackButton = document.getElementById("go-back-btn");
+        goBackButton.style.display = "block";
 
         const clearHighScoresButton = document.getElementById("clear-high-scores-btn");
         if (clearHighScoresButton) {
@@ -217,7 +274,6 @@ function showScore() {
     showHighScores();
 }
 
-
 // Define a variable to track whether the submit button has been clicked
 let submitClicked = false;
 
@@ -270,11 +326,11 @@ document.getElementById("clear-high-scores-btn").addEventListener('click', () =>
 // Add event listener to the go back button
 document.getElementById("go-back-btn").addEventListener('click', () => {
     resetQuiz();
-    document.querySelector(".quiz").style.display = "block"; // Show the quiz section
-    document.querySelector(".high-scores-list").style.display = "none"; // Hide the high scores list
-    document.getElementById("go-back-btn").style.display = "none"; // Correct selector
-    document.getElementById("clear-high-scores-btn").style.display = "none"; // Correct selector
-    document.querySelector(".intro-start").style.display = "none";
+    document.querySelector(".quiz").style.display = "none"; // Hide the quiz section
+    document.querySelector(".high-scores").style.display = "none"; // Hide the high scores list
+    document.getElementById("go-back-btn").style.display = "none"; // Hide the go back button
+    document.getElementById("clear-high-scores-btn").style.display = "none"; // Hide the clear high scores button
+    document.querySelector(".intro-start").style.display = "block"; // Show the start page
 });
 
 // Function to reset the quiz
