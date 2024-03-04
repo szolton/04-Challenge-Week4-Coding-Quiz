@@ -10,7 +10,8 @@ Sources: https://www.youtube.com/watch?v=PBcqGxrr9g8, https://www.youtube.com/wa
 
 I followed the videos to create the Javascript, HTML, and CSS. Here is a screen recording of it:
 
-<iframe title="vimeo-player" src="https://player.vimeo.com/video/919361758?h=1e7b10dfef" width="640" height="360" frameborder="0"    allowfullscreen></iframe>
+[![Video Thumbnail](https://vimeo.com/919361758?share=copy)](https://vimeo.com/919361758?share=copy)
+
 
 I set up the quiz to have a Start Quiz page, click on the Start button, go through the quiz where 
 
