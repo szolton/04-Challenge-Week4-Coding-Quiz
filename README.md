@@ -10,7 +10,7 @@ Sources: https://www.youtube.com/watch?v=PBcqGxrr9g8, https://www.youtube.com/wa
 
 I followed the videos to create the Javascript, HTML, and CSS. Here is a screen recording of it:
 
-![ScreenVideo](https://github.com/szolton/04-challenge-week4/blob/a0589561e256d1407c2fe44154caefb0f7fdbadc/Develop/Images/screen-video.mov)
+![ScreenVideo](./Develop/Images/screen-video.mp4)
 
 I set up the quiz to have a Start Quiz page, click on the Start button, go through the quiz where 
 
