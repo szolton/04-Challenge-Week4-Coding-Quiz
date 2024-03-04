@@ -10,7 +10,7 @@ Sources: https://www.youtube.com/watch?v=PBcqGxrr9g8, https://www.youtube.com/wa
 
 I followed the videos to create the Javascript, HTML, and CSS. Here is a screen recording video of it:
 
-[![Video Thumbnail](https://vimeo.com/919361758?share=copy)](https://vimeo.com/919361758?share=copy)
+[![ScreenVideoRecording](https://vimeo.com/919361758?share=copy)](https://vimeo.com/919361758?share=copy)
 
 ![Screenshot](./Develop/Images/readme-SS.png)
 
