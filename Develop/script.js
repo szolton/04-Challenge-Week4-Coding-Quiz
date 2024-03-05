@@ -1,4 +1,4 @@
-// Array of quiz questions and answers
+// this is the array of quiz questions and answers
 const questions = [
     {
         question: "Commonly used data types DO Not Include:",
@@ -47,7 +47,40 @@ const questions = [
             { text: "For loops", correct: false},
             { text: "Console.log", correct: true},
         ]
-    }
+    },
+
+    {
+        question: "Where is JavaScript placed inside an HTML document or page?",
+        answers: [
+            { text: "In the meta section", correct: false},
+            { text: "In the footer section with a script tag", correct: false},
+            { text: "In the body and head sections with a script tag", correct: true},
+            { text: "In the title section", correct: false},
+        ]
+    },
+    
+    {
+        question: "What is the name of a statement that is used to exit or end a loop?",
+        answers: [
+            { text: "Close statement", correct: false},
+            { text: "Break statement", correct: true},
+            { text: "Conditional statement", correct: false},
+            { text: "Falter statement", correct: false},
+        ]
+    },
+
+    {
+        question: "How do you write 'Hello World' in an alert box?",
+        answers: [
+            { text: "alertBox('Hello World')", correct: false},
+            { text: "alert('Hello World')", correct: true},
+            { text: "msgBox('Hello World')", correct: false},
+            { text: "msg('Hello World')", correct: false},
+        ]
+    },
+    
+
+
 ];
 
 // HTML element references
@@ -59,76 +92,78 @@ const feedbackElement = document.getElementById("feedback");
 const scoreContainer = document.querySelector(".score-container");
 const highScoresLink = document.getElementById("high-scores-link");
 
-// Other variables
+// other variables. this sets initial time in seconds, references the results box, and the timer interval
 let currentQuestionIndex = 0;
 let score = 0;
-let timeLeft = 180; // Set initial time in seconds
-let clearHighScoresResultsElement; // Reference to the results box
-let timerInterval; // Reference to the timer interval
+let timeLeft = 180;
+let clearHighScoresResultsElement;
+let timerInterval;
 
-// Add event listener to the start button
+// this adds an event listener to the start button, hides the start button, hides the intro quiz, and shows the quiz section
 startBtn.addEventListener('click', () => {
     startQuiz();
-    startBtn.style.display = "none"; // Hide the start button
-    document.querySelector(".intro-start").style.display = "none"; // Hide the intro quiz stuff
-    document.querySelector(".quiz").style.display = "block"; // Show the quiz section
+    startBtn.style.display = "none"; 
+    document.querySelector(".intro-start").style.display = "none"; 
+    document.querySelector(".quiz").style.display = "block";
 });
 
-// Add event listener to the high scores link
+// this adds an event listener to the high scores link, shows the high scores list, and hides the intro start section
 highScoresLink.addEventListener("click", () => {
     const highScoresContainer = document.querySelector("#results");
-    highScoresContainer.style.display = "block"; // Show the high scores list
-    document.querySelector(".intro-start").style.display = "none"; // Hide the intro-start section
+    highScoresContainer.style.display = "block"; 
+    document.querySelector(".intro-start").style.display = "none"; 
 
-    // Show the Go Back button
+    // this shows the Go Back button
     document.getElementById("go-back-btn").style.display = "inline";
 });
 
-
-// Function to start the quiz
+// this is the function to start the quiz
 function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
     showQuestion();
     startTimer();
 
-    // Show the high scores link
+    // this shows the high scores link
     highScoresLink.style.display = "inline";
 }
 
+// this is the end quiz function that clears the timer interval and hides the quiz section
+function endQuiz() {
+    clearInterval(timerInterval);
+    document.querySelector(".quiz").style.display = "none";
+}
 
-// Function to start the timer
+// this is the function to start the timer
 function startTimer(){
     timerInterval = setInterval(() => {
-        const minutes = Math.floor(timeLeft / 60); // Calculate minutes
-        let seconds = timeLeft % 60; // Calculate remaining seconds
+        const minutes = Math.floor(timeLeft / 60); 
+        let seconds = timeLeft % 60;
 
-        // Add leading zero to seconds if less than 10
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        // Display the time in MM:SS format
         timerElement.textContent = `${minutes}:${seconds}`;
 
-        if (timeLeft === 0) {
-            clearInterval(timerInterval);
-            endQuiz();
+        if (currentQuestionIndex >= questions.length) {
+            endQuiz(); 
         } else {
             timeLeft--;
         }
+        
     }, 1000);
 }
 
-// Function to display a question
+// this is a function to display a question
 function showQuestion(){
-    feedbackElement.style.display = "none"; // Hide the feedback element
+    feedbackElement.style.display = "none";
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    // Clear existing answer buttons
+    // this clears existing answer buttons
     answerButtonsElement.innerHTML = '';
 
-    // Create buttons for each answer
+    // this creates buttons for each answer
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
@@ -139,7 +174,7 @@ function showQuestion(){
     });
 }
 
-// Function to handle answer selection
+// this is a function to handle the answer selection
 function selectAnswer(e){
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
@@ -150,26 +185,26 @@ function selectAnswer(e){
     } else {
         selectedBtn.classList.add("incorrect");
         showFeedback("Incorrect!");
-        // Highlight the correct answer
+        
         const correctBtn = Array.from(answerButtonsElement.children).find(button => button.dataset.correct === "true");
         if (correctBtn) {
             correctBtn.classList.add("correct");
         }
-        // Reduce time if answer is incorrect
-        timeLeft -= 10; // Subtract 10 seconds
+   
+        timeLeft -= 10; 
         if (timeLeft < 0) {
             timeLeft = 0;
         }
         timerElement.textContent = `${Math.floor(timeLeft / 60)}:${(timeLeft % 60).toString().padStart(2, '0')}`;
     }
 
-    // Disable all buttons after an answer is selected
+    // this disables all buttons after an answer is selected
     const buttons = document.querySelectorAll(".btn");
     buttons.forEach(button => {
         button.removeEventListener("click", selectAnswer);
     });
 
-    // Show the next question after a delay
+    // this shows the next question after a delay
     setTimeout(() => {
         currentQuestionIndex++;
         if(currentQuestionIndex < questions.length){
@@ -180,24 +215,32 @@ function selectAnswer(e){
     }, 1000);
 }
 
-// Function to display feedback
+// this is the function to display feedback
 function showFeedback(text){
     feedbackElement.textContent = text;
-    feedbackElement.style.display = "block"; // Show the feedback element
+    feedbackElement.style.display = "block"; // this shows the feedback element
 }
 
 function submitInitials() {
-    // Get the initials from the input field
+    // this gets the initials from the input field
     const initialsInput = document.getElementById('name-input');
     if (initialsInput) {
         const initials = initialsInput.value;
         const highScores = JSON.parse(localStorage.getItem('high-scores-list')) || [];
 
+        // this checks if the initials have already been submitted
+        const existingScore = highScores.find(score => score.initials === initials);
+        if (existingScore) {
+            // this is a console log where you can show a message or perform some action
+            console.log("Initials already submitted!");
+            return;
+        }
+
         const newScore = { initials, score };
         highScores.push(newScore);
         localStorage.setItem('high-scores-list', JSON.stringify(highScores));
 
-        // Hide the name container and submit button
+        // this hides the name container and submit button
         const nameContainer = document.querySelector(".name-container");
         if (nameContainer) {
             nameContainer.style.display = "none";
@@ -207,13 +250,13 @@ function submitInitials() {
             submitButton.style.display = "none";
         }
 
-        // Show the high scores container and buttons
+        // this shows the high scores container and buttons
         const highScoresContainer = document.querySelector(".high-scores-list");
         if (highScoresContainer) {
             highScoresContainer.style.display = "block";
         }
 
-        // Show the "Go Back" and "Clear High Scores" buttons
+        // this shows the "Go Back" and "Clear High Scores" buttons
         const goBackButton = document.getElementById("go-back-btn");
         goBackButton.style.display = "block";
 
@@ -222,88 +265,89 @@ function submitInitials() {
             clearHighScoresButton.style.display = "block";
         }
 
-        // Set the submitClicked flag to true
+        // this sets the submitClicked flag to true
         submitClicked = true;
 
-        // Display high scores
+        // this displays the high scores
         showHighScores();
     }
 }
 
-// Add event listener to the submit button
+// this adds an event listener to the submit button
 document.getElementById("submit-btn").addEventListener('click', () => {
     submitInitials();
-    submitClicked = true; // Set submitClicked to true
+    submitClicked = true;
 });
 
-// Function to display the final score and input for initials
+// this is a function to display the final score and input for initials
 function showScore() {
-    // Hide the quiz elements
+   
+    // this hides the quiz elements
     document.querySelector(".quiz").style.display = "none";
 
-    // Hide the timer
+    // this hides the timer
     timerElement.style.display = "none";
 
-    // Display the final score
+    // this shows the user the final score
     const finalScoreElement = document.createElement("div");
     finalScoreElement.textContent = `You scored ${score} out of ${questions.length}.`;
     finalScoreElement.classList.add("final-score");
     scoreContainer.appendChild(finalScoreElement);
 
-    // Store a reference to the results box
+    // this stores a reference to the results box
     clearHighScoresResultsElement = finalScoreElement;
 
-    // Show the name container and submit button
+    // this shows the name container and submit button
     const nameContainer = document.querySelector(".name-container");
     nameContainer.style.display = "flex";
     const submitButton = document.getElementById("submit-btn");
     submitButton.style.display = "block";
 
-    // Show the clear high scores button
+    // this shows the clear high scores button
     const clearHighScoresButton = document.getElementById("clear-high-scores-btn");
     clearHighScoresButton.classList.remove("hide");
 
-    // Show the "Go Back" button
+    // this shows the "Go Back" button
     const goBackButton = document.getElementById("go-back-btn");
     goBackButton.classList.remove("hide");
 
-    // Change the "Coding Quiz Challenge" text
+    // this changes the "Coding Quiz Challenge" text
     document.querySelector("h1").textContent = "All done!";
 
-    // Show the high scores list
+    // this shows the high scores list
     showHighScores();
 }
 
-// Define a variable to track whether the submit button has been clicked
+// this defines a variable to track whether the submit button has been clicked
 let submitClicked = false;
 
-// Function to display high scores
+// this is a function to display high scores
 function showHighScores() {
     try {
         const highScores = JSON.parse(localStorage.getItem('high-scores-list')) || [];
 
-        // Clear existing high scores
+        // this clears existing high scores
         const highScoresList = document.querySelector(".high-scores-list");
         highScoresList.innerHTML = "";
 
-        // Sort high scores in descending order
+        // this sorts the high scores in descending order
         highScores.sort((a, b) => b.score - a.score);
 
-        // Display high scores only if submit button has been clicked
+        // this displays the high scores only if submit button has been clicked
         if (submitClicked) {
             highScores.forEach((score, index) => {
                 const scoreItem = document.createElement("li");
                 scoreItem.textContent = `${index + 1}. ${score.initials} - ${score.score}`;
                 scoreItem.classList.add("high-score");
                 if (index % 2 === 0) {
-                    scoreItem.style.backgroundColor = "whitesmoke"; // Alternate white background
+                    scoreItem.style.backgroundColor = "whitesmoke"; // this alternates a white background
                 } else {
-                    scoreItem.style.backgroundColor = "#b194d3"; // Alternate purple background
+                    scoreItem.style.backgroundColor = "#b194d3"; // this alternates a purple background
                 }
                 highScoresList.appendChild(scoreItem);
             });
 
-            // Show the high scores list
+            // this shows the high scores list
             document.getElementById("results").style.display = "block";
         }
     } catch (error) {
@@ -311,51 +355,51 @@ function showHighScores() {
     }
 }
 
-// Add event listener to the clear high scores button
+// this adds an event listener to the clear high scores button
 document.getElementById("clear-high-scores-btn").addEventListener('click', () => {
     localStorage.removeItem('high-scores-list');
-    // Hide the high scores list
+    // this hides the high scores list
     const results = document.getElementById("results");
     results.style.display = "none";
 
-    // Clear existing high scores from the DOM
+    // this clears up the existing high scores from the DOM
     const highScoresList = document.querySelector(".high-scores-list");
     highScoresList.innerHTML = "";
 });
 
-// Add event listener to the go back button
+// this adds an event listener to the go back button
 document.getElementById("go-back-btn").addEventListener('click', () => {
     resetQuiz();
-    document.querySelector(".quiz").style.display = "none"; // Hide the quiz section
-    document.querySelector(".high-scores").style.display = "none"; // Hide the high scores list
-    document.getElementById("go-back-btn").style.display = "none"; // Hide the go back button
-    document.getElementById("clear-high-scores-btn").style.display = "none"; // Hide the clear high scores button
-    document.querySelector(".intro-start").style.display = "block"; // Show the start page
+    document.querySelector(".quiz").style.display = "none"; // this hides the quiz section
+    document.querySelector(".high-scores").style.display = "none"; // this hides the high scores list
+    document.getElementById("go-back-btn").style.display = "none"; // this hides the go back button
+    document.getElementById("clear-high-scores-btn").style.display = "none"; // this hides the clear high scores button
+    document.querySelector(".intro-start").style.display = "block"; // this shows the start page
 });
 
-// Function to reset the quiz
+// this is a function to reset the quiz
 function resetQuiz() {
-    // Reset variables
+    // these are the reset variables
     currentQuestionIndex = 0;
     score = 0;
     timeLeft = 180;
     submitClicked = false;
 
-    // Reset the timer
+    // this resets the timer
     timerElement.textContent = '';
     clearInterval(timerInterval);
 
-    // Show the start button and intro quiz stuff
+    // this shows the start button and intro quiz stuff
     startBtn.style.display = "block";
     document.querySelector(".intro-start").style.display = "block";
 
-    // Hide the quiz section and name container
+    // this hides the quiz section and name container
     document.querySelector(".quiz").style.display = "none";
     document.querySelector(".name-container").style.display = "none";
 
-    // Remove final score display
+    // this removes final score display
     scoreContainer.innerHTML = '';
 
-    // Change the "Coding Quiz Challenge" text back to its original value
+    // this changes the "Coding Quiz Challenge" text back to its original value
     document.querySelector("h1").textContent = "Coding Quiz Challenge";
 }
