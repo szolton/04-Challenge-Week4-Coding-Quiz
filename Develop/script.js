@@ -9,75 +9,75 @@ const questions = [
             { text: "Numbers", correct: false},
         ]
     },
-     {
-        question: "The condition in an if/else statement is enclosed with _____",
-        answers: [
-            { text: "Quotes", correct: false},
-            { text: "Curly Brackets", correct: false},
-            { text: "Parenthesis", correct: true},
-            { text: "Square Brackets", correct: false},
-        ]
-    },
+    //  {
+    //     question: "The condition in an if/else statement is enclosed with _____",
+    //     answers: [
+    //         { text: "Quotes", correct: false},
+    //         { text: "Curly Brackets", correct: false},
+    //         { text: "Parenthesis", correct: true},
+    //         { text: "Square Brackets", correct: false},
+    //     ]
+    // },
 
-    {
-        question: "Arrays in JavaScript can be used to store ____",
-        answers: [
-            { text: "Numbers and Strings", correct: false},
-            { text: "Other Arrays", correct: false},
-            { text: "Booleans", correct: false},
-            { text: "All of the Above", correct: true},
-        ]
-    },
+    // {
+    //     question: "Arrays in JavaScript can be used to store ____",
+    //     answers: [
+    //         { text: "Numbers and Strings", correct: false},
+    //         { text: "Other Arrays", correct: false},
+    //         { text: "Booleans", correct: false},
+    //         { text: "All of the Above", correct: true},
+    //     ]
+    // },
 
-    {
-        question: "String values must be enclosed within ___ when being assigned to variables.",
-        answers: [
-            { text: "Commas", correct: false},
-            { text: "Curly Brackets", correct: false},
-            { text: "Quotes", correct: true},
-            { text: "Parenthesis", correct: false},
-        ]
-    },
+    // {
+    //     question: "String values must be enclosed within ___ when being assigned to variables.",
+    //     answers: [
+    //         { text: "Commas", correct: false},
+    //         { text: "Curly Brackets", correct: false},
+    //         { text: "Quotes", correct: true},
+    //         { text: "Parenthesis", correct: false},
+    //     ]
+    // },
  
-    {
-        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answers: [
-            { text: "JavaScript", correct: false},
-            { text: "Terminal/Bash", correct: false},
-            { text: "For loops", correct: false},
-            { text: "Console.log", correct: true},
-        ]
-    },
+    // {
+    //     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    //     answers: [
+    //         { text: "JavaScript", correct: false},
+    //         { text: "Terminal/Bash", correct: false},
+    //         { text: "For loops", correct: false},
+    //         { text: "Console.log", correct: true},
+    //     ]
+    // },
 
-    {
-        question: "Where is JavaScript placed inside an HTML document or page?",
-        answers: [
-            { text: "In the meta section", correct: false},
-            { text: "In the footer section with a script tag", correct: false},
-            { text: "In the body and head sections with a script tag", correct: true},
-            { text: "In the title section", correct: false},
-        ]
-    },
+    // {
+    //     question: "Where is JavaScript placed inside an HTML document or page?",
+    //     answers: [
+    //         { text: "In the meta section", correct: false},
+    //         { text: "In the footer section with a script tag", correct: false},
+    //         { text: "In the body and head sections with a script tag", correct: true},
+    //         { text: "In the title section", correct: false},
+    //     ]
+    // },
     
-    {
-        question: "What is the name of a statement that is used to exit or end a loop?",
-        answers: [
-            { text: "Close statement", correct: false},
-            { text: "Break statement", correct: true},
-            { text: "Conditional statement", correct: false},
-            { text: "Falter statement", correct: false},
-        ]
-    },
+    // {
+    //     question: "What is the name of a statement that is used to exit or end a loop?",
+    //     answers: [
+    //         { text: "Close statement", correct: false},
+    //         { text: "Break statement", correct: true},
+    //         { text: "Conditional statement", correct: false},
+    //         { text: "Falter statement", correct: false},
+    //     ]
+    // },
 
-    {
-        question: "How do you write 'Hello World' in an alert box?",
-        answers: [
-            { text: "alertBox('Hello World')", correct: false},
-            { text: "alert('Hello World')", correct: true},
-            { text: "msgBox('Hello World')", correct: false},
-            { text: "msg('Hello World')", correct: false},
-        ]
-    },
+    // {
+    //     question: "How do you write 'Hello World' in an alert box?",
+    //     answers: [
+    //         { text: "alertBox('Hello World')", correct: false},
+    //         { text: "alert('Hello World')", correct: true},
+    //         { text: "msgBox('Hello World')", correct: false},
+    //         { text: "msg('Hello World')", correct: false},
+    //     ]
+    // },
     
 
 
@@ -91,6 +91,8 @@ const timerElement = document.getElementById("timer");
 const feedbackElement = document.getElementById("feedback");
 const scoreContainer = document.querySelector(".score-container");
 const highScoresLink = document.getElementById("high-scores-link");
+const highScoresContainer = document.querySelector("#results");
+highScoresContainer.style.visibility = "hidden";
 
 // other variables. this sets initial time in seconds, references the results box, and the timer interval
 let currentQuestionIndex = 0;
@@ -109,12 +111,19 @@ startBtn.addEventListener('click', () => {
 
 // this adds an event listener to the high scores link, shows the high scores list, and hides the intro start section
 highScoresLink.addEventListener("click", () => {
-    const highScoresContainer = document.querySelector("#results");
+    //const highScoresContainer = document.querySelector("#results");
+    highScoresContainer.style.visibility = "visible";
+    const highScoresList = document.querySelector(".high-scores-list");
     highScoresContainer.style.display = "block"; 
+    highScoresList.style.display = "block"; 
     document.querySelector(".intro-start").style.display = "none"; 
 
     // this shows the Go Back button
     document.getElementById("go-back-btn").style.display = "inline";
+
+
+    showHighScores();
+    // Here we interact with LocalStorage
 });
 
 // this is the function to start the quiz
@@ -172,6 +181,11 @@ function showQuestion(){
         button.addEventListener("click", selectAnswer);
         answerButtonsElement.appendChild(button);
     });
+
+    // start the timer if it hasn't started yet
+    if (!timerInterval) {
+        startTimer();
+    }
 }
 
 // this is a function to handle the answer selection
@@ -222,11 +236,13 @@ function showFeedback(text){
 }
 
 function submitInitials() {
+    
     // this gets the initials from the input field
     const initialsInput = document.getElementById('name-input');
     if (initialsInput) {
         const initials = initialsInput.value;
         const highScores = JSON.parse(localStorage.getItem('high-scores-list')) || [];
+        
 
         // this checks if the initials have already been submitted
         const existingScore = highScores.find(score => score.initials === initials);
@@ -325,8 +341,9 @@ let submitClicked = false;
 function showHighScores() {
     try {
         const highScores = JSON.parse(localStorage.getItem('high-scores-list')) || [];
-
+        console.log("scores: ", highScores)
         // this clears existing high scores
+        highScoresContainer.style.visibility = "visible";
         const highScoresList = document.querySelector(".high-scores-list");
         highScoresList.innerHTML = "";
 
@@ -334,7 +351,7 @@ function showHighScores() {
         highScores.sort((a, b) => b.score - a.score);
 
         // this displays the high scores only if submit button has been clicked
-        if (submitClicked) {
+       // if (submitClicked) {
             highScores.forEach((score, index) => {
                 const scoreItem = document.createElement("li");
                 scoreItem.textContent = `${index + 1}. ${score.initials} - ${score.score}`;
@@ -349,7 +366,7 @@ function showHighScores() {
 
             // this shows the high scores list
             document.getElementById("results").style.display = "block";
-        }
+       // }
     } catch (error) {
         console.error("An error occurred in showHighScores:", error);
     }
@@ -375,15 +392,21 @@ document.getElementById("go-back-btn").addEventListener('click', () => {
     document.getElementById("go-back-btn").style.display = "none"; // this hides the go back button
     document.getElementById("clear-high-scores-btn").style.display = "none"; // this hides the clear high scores button
     document.querySelector(".intro-start").style.display = "block"; // this shows the start page
+    highScoresContainer.style.visibility = "hidden";
 });
 
 // this is a function to reset the quiz
 function resetQuiz() {
+
     // these are the reset variables
     currentQuestionIndex = 0;
     score = 0;
     timeLeft = 180;
     submitClicked = false;
+
+    if (!timerInterval) {
+        startTimer();
+    }
 
     // this resets the timer
     timerElement.textContent = '';
@@ -396,10 +419,24 @@ function resetQuiz() {
     // this hides the quiz section and name container
     document.querySelector(".quiz").style.display = "none";
     document.querySelector(".name-container").style.display = "none";
+    highScoresContainer.style.visibility = "hidden";
 
     // this removes final score display
     scoreContainer.innerHTML = '';
 
     // this changes the "Coding Quiz Challenge" text back to its original value
     document.querySelector("h1").textContent = "Coding Quiz Challenge";
+
+    // Hide high scores list
+    const highScoresList = document.querySelector("#results.high-scores");
+    highScoresList.style.display = "none";
+
+    highScoresContainer.style.visibility = "hidden";
+
 }
+
+
+// Add this at the end of your JavaScript file to show high scores on page load
+window.addEventListener('load', () => {
+  //  showHighScores();
+});
