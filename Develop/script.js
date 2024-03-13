@@ -157,6 +157,33 @@ function startQuiz(){
     // this shows the high scores link
     highScoresLink.style.display = "inline";
 }
+
+
+// this is the end quiz function that clears the timer interval and hides the quiz section
+function endQuiz() {
+    clearInterval(timerInterval);
+    document.querySelector(".quiz").style.display = "none";
+}
+
+// this is the function to start the timer
+function startTimer(){
+    timerInterval = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60); 
+        let seconds = timeLeft % 60;
+
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        timerElement.textContent = `${minutes}:${seconds}`;
+
+        if (currentQuestionIndex >= questions.length) {
+            endQuiz(); 
+        } else {
+            timeLeft--;
+        }
+        
+    }, 1000);
+}
+
 // this is a function to display a question
 function showQuestion(){
     feedbackElement.style.display = "none";
