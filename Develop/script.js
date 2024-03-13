@@ -131,37 +131,32 @@ function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
     showQuestion();
-    startTimer();
 
-    // this shows the high scores link
-    highScoresLink.style.display = "inline";
-}
+     // Reset the timer and start it again
+     clearInterval(timerInterval);
+     timerInterval = null;
+     timeLeft = 180;
+     startTimer();
 
-// this is the end quiz function that clears the timer interval and hides the quiz section
-function endQuiz() {
-    clearInterval(timerInterval);
-    document.querySelector(".quiz").style.display = "none";
-}
+     document.querySelector("#timer").style.display = "block";
 
-// this is the function to start the timer
-function startTimer(){
-    timerInterval = setInterval(() => {
+    
+    // Check if the timer is already running
+    if (!timerInterval) {
+        startTimer();
+    } else {
+        // If the timer is already running, update the timer display without resetting the timer
         const minutes = Math.floor(timeLeft / 60); 
         let seconds = timeLeft % 60;
 
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
         timerElement.textContent = `${minutes}:${seconds}`;
+    }
 
-        if (currentQuestionIndex >= questions.length) {
-            endQuiz(); 
-        } else {
-            timeLeft--;
-        }
-        
-    }, 1000);
+    // this shows the high scores link
+    highScoresLink.style.display = "inline";
 }
-
 // this is a function to display a question
 function showQuestion(){
     feedbackElement.style.display = "none";
