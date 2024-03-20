@@ -255,3 +255,7 @@ ul, ol, li {
 #high-scores-link:hover {
     background-color: #B194d3;
 }
+
+#results {
+    display: none;
+}
