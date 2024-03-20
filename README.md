@@ -10,7 +10,7 @@ Sources: https://www.youtube.com/watch?v=PBcqGxrr9g8, https://www.youtube.com/wa
 
 I followed the videos to create the Javascript, HTML, and CSS. Here is a screen recording video of it:
 
-![ScreenVideoRecording](https://vimeo.com/925599878)
+[ScreenVideoRecording](https://vimeo.com/925599878)
 
 But for reference, here are some screenshots of the flow of the quiz below. Here's the first page that loads when you click on the quiz:
 
