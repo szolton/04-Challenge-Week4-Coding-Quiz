@@ -187,6 +187,7 @@ function startQuiz(){
     highScoresLink.style.display = "inline";
 }
 
+
 // this is the end quiz function that clears the timer interval and hides the quiz section
 function endQuiz() {
     clearInterval(timerInterval);
